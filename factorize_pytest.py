@@ -1,7 +1,9 @@
-from factorize import factorize, PrimeNumbers, FIRST_100_PRIMES
 import pytest
+from factorize import factorize, PrimeNumbers, FIRST_100_PRIMES
+import random, functools
 
 PrimeNumbers.set_prime_list_for_testing([2])
+
 
 @pytest.mark.parametrize("message, expected_starting_list, all_prime_to_this_number", (
         ("Check PrimeNumbers(10)", (2, 3, 5, 7), 10),
@@ -11,7 +13,8 @@ PrimeNumbers.set_prime_list_for_testing([2])
 ))
 def test_prime_number(message, expected_starting_list, all_prime_to_this_number):
     len_primes_before_test = len(PrimeNumbers.get_prime_list_for_testing())
-    first_expected_element_of_result= PrimeNumbers.get_prime_numbers_list_until(all_prime_to_this_number)[:len(expected_starting_list)]
+    first_expected_element_of_result = PrimeNumbers.get_prime_numbers_list_until(all_prime_to_this_number)[
+                                       :len(expected_starting_list)]
     assert tuple(expected_starting_list) == tuple(first_expected_element_of_result)
     assert len(PrimeNumbers.get_prime_list_for_testing()) > len_primes_before_test
 
@@ -32,6 +35,18 @@ def test_prime_number(message, expected_starting_list, all_prime_to_this_number)
 ))
 def test(message, expected_primes, number_to_factorize):
     assert set(expected_primes) == set(factorize(number_to_factorize)), message
+
+
+def test_math_constraints():
+    for i in range(10):
+        v = random.randint(1000, 10000)
+        result = factorize(v)
+        mult_results = functools.reduce(lambda x, y: x * y, result)
+        not_prime_result = [x for x in result if not(x in PrimeNumbers.get_prime_numbers_list_until(x)) ]
+        assert mult_results == v, (
+            "factorize("+str(v)+")="+str(result)+"   Multiply all elements of the list=" + str(mult_results))
+        assert not_prime_result == [], (
+            "factorize("+str(v)+")="+str(result)+"   This results are not prime numbers=" + str(not_prime_result))
 
 
 if __name__ == '__main__':
