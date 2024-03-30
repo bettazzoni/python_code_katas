@@ -1,5 +1,5 @@
 # Bowling kata "functional programming" version
-# thanks to emadb, translated for the elixir version  https://github.com/emadb/bowling_kata
+# thanks to @emadb, translated for the elixir version  https://github.com/emadb/bowling_kata
 def score(*hits, frame=1) -> int:
     def following_frames_score(hits_in_this_frame):
         return score(*hits[hits_in_this_frame:], frame=frame + 1)
