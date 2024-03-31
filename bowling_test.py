@@ -1,5 +1,5 @@
 import unittest
-from bowling import score
+from bowling_func import score
 
 TESTS_DATA = (
     ("empty", 0, ()),
