@@ -20,7 +20,7 @@ def test_prime_number(message, expected_starting_list, all_prime_to_this_number)
 
 
 @pytest.mark.parametrize("message, expected_primes, number_to_factorize", (
-        ("test 2", [2], 2),
+        ("Test the first prime number: 2", [2], 2),
         ("test 3", [3], 3),
         ("test 4", (2, 2), 4),
         ("test 6", (2, 3), 6),
@@ -39,14 +39,16 @@ def test(message, expected_primes, number_to_factorize):
 
 def test_math_constraints():
     for i in range(10):
-        v = random.randint(1000, 10000)
+        v = random.randint(1000, 10000)  # test relatively big random numbers
         result = factorize(v)
         mult_results = functools.reduce(lambda x, y: x * y, result)
-        not_prime_result = [x for x in result if not(x in PrimeNumbers.get_prime_numbers_list_until(x)) ]
+        not_prime_result = [x for x in result if not (x in PrimeNumbers.get_prime_numbers_list_until(x))]
         assert mult_results == v, (
-            "factorize("+str(v)+")="+str(result)+"   Multiply all elements of the list=" + str(mult_results))
+                "Test multiply the results to have the original value.  factorize(" + str(v) + ")=" + str(result) +
+                "   Multiply all elements of the list=" + str(mult_results))
         assert not_prime_result == [], (
-            "factorize("+str(v)+")="+str(result)+"   This results are not prime numbers=" + str(not_prime_result))
+                "Test all the results are prime numbers.     factorize(" + (str(v) + ")=" + str(result) +
+                "   This results are not prime numbers=" + str(not_prime_result)))
 
 
 if __name__ == '__main__':
