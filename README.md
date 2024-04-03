@@ -13,6 +13,7 @@ Python 3.10+ and [pytest](https://pytest.org/)
 * [Alarm clock](#Alarm-clock)
 * [Bowling game score](#Bowling-game-score)
 * [Factorize into primes](#Factorize-into-primes) 
+* Game of Life
 * [Leap year](#Leap-year)
 * [Password checker](#Password-checker)
 * [Remote calculator](#Remote-calculator)
@@ -109,6 +110,35 @@ Note on [prime number](https://en.wikipedia.org/wiki/Prime_number).
 1 is not a prime number.    
 Prime numbers start from 2.    
 So 1 has to be excluded from this kata
+
+---
+## Game of life
+(From the description in [coding dojo](https://codingdojo.org/kata/GameOfLife/) )
+
+This Kata is about calculating the next generation of Conway’s game of life, given any starting position. See http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life for background.
+
+You start with a two dimensional grid of cells, where each cell is either alive or dead.     
+In this version of the problem, the grid is finite, and no life can exist off the edges. 
+Grid rules:
+Given g[N][M] a grid of N*M elements.
+
+The grid follows the rules 
+ * `g[N][] == g[0]`
+ * `g[][M] == g[][0]`
+ * `g[-1][] == g[N-1][]`
+ * `g[][-1] == g[][M-1]`
+
+When calcuating the next generation of the grid, follow these rules:
+
+   1. Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
+   2. Any live cell with more than three live neighbours dies, as if by overcrowding.
+   3. Any live cell with two or three live neighbours lives on to the next generation.
+   4. Any dead cell with exactly three live neighbours becomes a live cell.
+
+You should write a program that can accept an arbitrary grid of cells, and will output a similar grid showing the next generation.
+
+First version with Python 
+
 
 ---
 
