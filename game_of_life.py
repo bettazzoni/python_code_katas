@@ -31,9 +31,8 @@ class GameOfLife(Grid):
     @property
     def create_next_generation(self):
         def set_func(i, j):
-            living_neighbours: int = len([el for el in self.get_neighbours(i, j) if el])
+            living_neighbours: int = sum([1 for _ in self.get_neighbours(i, j) if _])
             return living_neighbours == 3 or (self.get(i, j) and living_neighbours == 2)
-
         return self.from_matrix(self.matrix, set_func)
 
 
