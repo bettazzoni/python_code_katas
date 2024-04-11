@@ -2,7 +2,6 @@ import pytest
 from harrypotter import hp, split_into_discount_groups, MultipleBookDiscountGroup, extract_discount_group, \
     get_index_of_n_different_books
 
-
 @pytest.mark.parametrize("message, number_of_books_for_each_discount, cost", (
         ("zero books", (0, 0, 0, 0, 0), 0),
         ("1 book", (1, 0, 0, 0, 0), 8),
@@ -17,6 +16,7 @@ def test_multiple_book_discount_group(message, number_of_books_for_each_discount
     mbp = MultipleBookDiscountGroup(*number_of_books_for_each_discount)
     assert mbp.data == number_of_books_for_each_discount
     assert mbp.cost == cost
+    assert mbp == MultipleBookDiscountGroup(*number_of_books_for_each_discount)
 
 
 @pytest.mark.parametrize("message, books, return_exact_length, ret", (
@@ -84,7 +84,21 @@ def test_split_into_discount_groups(message: str, books: tuple, number_of_books_
 
 
 @pytest.mark.parametrize("message, books, result", (
-        ("zero books", (0, 0, 0, 0, 0), ()),
+        ("zero books", (0, 0, 0, 0, 0),
+         { MultipleBookDiscountGroup(0, 0, 0, 0, 0)}),
+        ("2 identical books", (2, 0, 0, 0, 0),
+         { MultipleBookDiscountGroup(2, 0, 0, 0, 0)}),
+        ("2 different", (0, 1, 1, 0, 0),
+         { MultipleBookDiscountGroup(0, 2, 0, 0, 0),
+           MultipleBookDiscountGroup(2, 0, 0, 0, 0),
+           }),
+        ("example", (2, 2, 2, 1, 1),
+         {MultipleBookDiscountGroup(8, 0, 0, 0, 0),
+          MultipleBookDiscountGroup(0, 8, 0, 0, 0),
+          MultipleBookDiscountGroup(0, 2, 6, 0, 0),
+          MultipleBookDiscountGroup(0, 0, 0, 8, 0),
+          MultipleBookDiscountGroup(0, 0, 3, 0, 5),
+          }),
 ))
 def test_hp(message: str, books: tuple, result: tuple):
     assert hp(books) == result, message

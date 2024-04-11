@@ -6,6 +6,15 @@ class MultipleBookDiscountGroup:
         self._data = (singles, couple, trio, quartet, all_5books)
         self.one_book_cost = (8.0, 8 * 0.95, 8 * 0.9, 8 * 0.8, 8 * 0.75)
 
+    def __str__(self):
+        return str(self._data) + " cost=" + str(self.cost)
+
+    def __eq__(self, other):
+        return self.data == other.data
+
+    def __hash__(self):
+        return self.data.__hash__()
+
     @property
     def data(self):
         return self._data
@@ -35,13 +44,13 @@ def extract_discount_group(books, different_books=2):
 
 
 def split_into_discount_groups(books):
-    results ={ (sum(books), 0, 0, 0, 0) }
+    results = {(sum(books), 0, 0, 0, 0)}
     discount_group_to_extract = [5, 4, 3, 2]
-    while len(discount_group_to_extract)>0:
+    while len(discount_group_to_extract) > 0:
         x = list(books)
-        discount_groups = [0,0,0,0,0]
+        discount_groups = [0, 0, 0, 0, 0]
         for i in discount_group_to_extract:
-            discount_groups[i-1], x = extract_discount_group(x, i)
+            discount_groups[i - 1], x = extract_discount_group(x, i)
         discount_groups[0] = sum(x)
         results.add(tuple(discount_groups))
         discount_group_to_extract = discount_group_to_extract[1:]
@@ -49,4 +58,10 @@ def split_into_discount_groups(books):
 
 
 def hp(hp_books):
-    return ()
+    return {MultipleBookDiscountGroup(*e) for e in split_into_discount_groups(hp_books)}
+
+
+# as demo print the example's solution sorted by the cost
+if __name__ == '__main__':
+    for e in sorted(hp((2, 2, 2, 1, 1)), key=lambda x: x.cost):
+        print(e)
