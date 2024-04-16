@@ -17,12 +17,16 @@ Python 3.10+ and [pytest](https://pytest.org/)
 * [Game of Life](#Game-of-life)
 * [Harry Potter books](#Harry-Potter-books)
 * [Leap year](#Leap-year)
+* Mars Rover challanges [(description on code.google)](https://code.google.com/archive/p/marsrovertechchallenge/)
 * [Password checker](#Password-checker)
 * [Remote calculator](#Remote-calculator)
+* [Reverse Roman number](#reverse-roman)
 * [Roman numbers](#Roman-numbers)
 
+Thanks to [cyber dojo](https://cyber-dojo.org/) for kata descriptions, and to be "_a place to practice programming_"
 
 
+---
 ### Alarm clock
 As a programmer I want to receive/build an Alarm object 
 so I can check the timeout only when I need/want
@@ -266,7 +270,7 @@ The possible commands are
 
 
 ---
-## Reverse Roman 
+## Reverse Roman
 
 Given a Roman number as a string (eg "XX") determine its integer value (eg 20).
 
