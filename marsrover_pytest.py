@@ -1,5 +1,5 @@
 import pytest
-from marsrover import Rover, kata_solution
+from marsrover import Rover, kata_solution, NORD, EAST, SOUTH, WEST, Position
 
 
 @pytest.mark.parametrize("plateau_dimension_line,plateau_dim_tuple", [
@@ -13,15 +13,14 @@ def test_set_plateau_dim(plateau_dimension_line, plateau_dim_tuple):
     assert Rover("0 0 S").plateau_dim == plateau_dim_tuple
 
 
-@pytest.mark.parametrize("rover_start_str, rover_pos, rover_heading", [
-    ('10 20 N\n ', (10, 20), (0, 1)),
-    ('0 0 E   ', (0, 0), (1, 0)),
-    ('137\t42 W\n ', (137, 42), (-1, 0)),
+@pytest.mark.parametrize("rover_start_str, rover_pos", [
+    ('10 20 N  \n ', Position(10, 20, NORD) ),
+    ('0 0 E       ', Position(0, 0, EAST) ),
+    ('137\t42 W\n ', Position(137, 42, WEST) ),
 ])
-def test_constructor(rover_start_str, rover_pos, rover_heading):
+def test_constructor(rover_start_str, rover_pos):
     r = Rover(rover_start_str)
     assert r.pos == rover_pos
-    assert r.heading == rover_heading
 
 
 def test_position():
