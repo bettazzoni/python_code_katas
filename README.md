@@ -18,6 +18,7 @@ Python 3.10+ and [pytest](https://pytest.org/)
 * [Harry Potter books](#Harry-Potter-books)
 * [Leap year](#Leap-year)
 * Mars Rover challanges [(description on code.google)](https://code.google.com/archive/p/marsrovertechchallenge/)
+* [Mine Field]()
 * [Password checker](#Password-checker)
 * [Remote calculator](#Remote-calculator)
 * [Reverse Roman number](#reverse-roman)
@@ -243,6 +244,30 @@ Examples:
 * 1584 was the first leap year of the Gregorian calendar
 * 1900 is an atypical common year
 * 2000 is an atypical leap year
+
+
+---
+### Mine Field
+
+A field of N x M squares is represented by N lines of exactly M characters each.
+
+* The character '@' represents a mine. 
+* The character '.' represents no-mine.
+
+Example input (a 3 x 4 mine-field of 12 squares, 2 of which are mines)
+
+3 4    
+@...    
+..@.    
+....    
+
+Your task is to write a program to accept this input and produce as output a hint-field of identical dimensions where each square is a * for a mine or the number of adjacent mine-squares if the square does not contain a mine.
+
+Example output (for the above input)     
+@211    
+12@1    
+0111     
+
 
 ---
 
