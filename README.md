@@ -272,14 +272,21 @@ Example output (for the above input)
 ---
 
 ### Password checker
-As a generic user    
-I want to be warned if my password is too weak  
-so I'm more safe
+As a generic user I want to be warned if my password is too weak so I'm more safe
 
 Rules: In order to be an acceptable password, a string must:
 * Have a length greater than 7 characters.
 * Contain at least one alphabetic character.
 * Contain at least one digit.
+
+#### a. A password-strength checker – extension Admins password
+As an administrator I want to be warned if my password is too weak so I'm more safe
+
+Rules: Admin passwords must also...
+* Be > 10 chars long
+* Contain at least one special character
+* Last character must be special or digit
+
 
 ---
 ### Remote calculator
